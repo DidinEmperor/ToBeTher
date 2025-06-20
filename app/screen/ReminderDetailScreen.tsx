@@ -1,9 +1,9 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../App';
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
+import { RootStackParamList } from "../app";
 
-type Props = NativeStackScreenProps<RootStackParamList, 'ReminderDetail'>;
+type Props = NativeStackScreenProps<RootStackParamList, "ReminderDetail">;
 
 export default function ReminderDetailScreen({ route }: Props) {
   const { reminder } = route.params;
@@ -18,5 +18,5 @@ export default function ReminderDetailScreen({ route }: Props) {
 
 const styles = StyleSheet.create({
   container: { padding: 20 },
-  title: { fontSize: 24, fontWeight: 'bold', marginBottom: 10 },
+  title: { fontSize: 24, fontWeight: "bold", marginBottom: 10 },
 });
