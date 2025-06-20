@@ -2,7 +2,13 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import { Button, FlatList, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { getMotivationQuote } from "../services/quoteService";
 import { Reminder } from "../types/reminder";
+const [quote, setQuote] = useState("");
+
+useEffect(() => {
+  getMotivationQuote().then(setQuote);
+}, []);
 
 export default function HomeScreen() {
   const [reminders, setReminders] = useState<Reminder[]>([]);
@@ -30,6 +36,7 @@ export default function HomeScreen() {
             <View style={styles.item}>
               <Text style={styles.title}>{item.title}</Text>
               <Text>{item.time}</Text>
+              <Text style={{ fontStyle: "italic", marginVertical: 10 }}>{quote}</Text>
             </View>
           </TouchableOpacity>
         )}
