@@ -1,9 +1,9 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
+import AddReminderScreen from "./screen/AddReminderScreen";
 import HomeScreen from "./screen/HomeScreen";
-import AddReminderScreen from "./screens/AddReminderScreen";
-import ReminderDetailScreen from "./screens/ReminderDetailScreen";
+import ReminderDetailScreen from "./screen/ReminderDetailScreen";
 import SettingsScreen from "./screens/SettingsScreen";
 import { Reminder } from "./types/reminder";
 
