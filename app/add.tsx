@@ -1,24 +1,22 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import React, { useState } from "react";
+import { useRouter } from "expo-router";
+import { useState } from "react";
 import { Button, StyleSheet, TextInput, View } from "react-native";
 import { v4 as uuidv4 } from "uuid";
-import { RootStackParamList } from "../app";
 import { Reminder } from "../types/reminder";
 
-type Props = NativeStackScreenProps<RootStackParamList, "AddReminder">;
-
-export default function AddReminderScreen({ navigation }: Props) {
+export default function AddReminder() {
   const [title, setTitle] = useState("");
   const [time, setTime] = useState("");
+  const router = useRouter();
 
   const saveReminder = async () => {
     const newReminder: Reminder = { id: uuidv4(), title, time };
-    const data = await AsyncStorage.getItem("reminders");
-    const reminders: Reminder[] = data ? JSON.parse(data) : [];
-    reminders.push(newReminder);
-    await AsyncStorage.setItem("reminders", JSON.stringify(reminders));
-    navigation.goBack();
+    const existing = await AsyncStorage.getItem("reminders");
+    const list = existing ? JSON.parse(existing) : [];
+    list.push(newReminder);
+    await AsyncStorage.setItem("reminders", JSON.stringify(list));
+    router.back();
   };
 
   return (
